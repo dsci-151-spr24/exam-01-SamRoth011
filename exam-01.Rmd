@@ -118,12 +118,25 @@ flights %>%
 
 ```
 
-***The ten most common destinations for flights from NYC airports in 2013 were, in order from most to least, Chicago, Atlanta, Los Angeles, Boston, Orlando, Charlotte, San Francisco, Fort Lauderdale, Miami, and Washington D.C.
+***The ten most common destinations for flights from NYC airports in 2013 were, in order from most to least, Chicago, Atlanta, Los Angeles, Boston, Orlando, Charlotte, San Francisco, Fort Lauderdale, Miami, and Washington D.C.***
+
+https://stackoverflow.com/questions/51819030/select-the-n-most-frequent-values-in-a-variable (used to find "top_n()")
 
 2.  **Question 2 (10 points)** - Which airlines have the most flights departing from NYC airports in 2013?
     Make a table that lists these in descending order of frequency and shows the number of flights for each airline.
     In your narrative mention the names of the airlines as well.
     *Hint:* You can use the `airlines` dataset to look up the airline name based on `carrier` code.
+    
+```{r}
+
+flights %>%
+  group_by(carrier) %>%
+  summarize(n = n()) %>%
+  arrange(desc(n))
+
+```
+
+***United Air Lines Inc. had the most flights departing from NYC airports in 2013, followed by JetBlue Airways, ExpressJet Airlines Inc., Delta Air Lines Inc., American Airlines Inc., Envoy Air, US Airways Inc., Endeavor Air Inc., Southwest Airlines Co., Virgin America, AirTran Airways Corporation, Alaska Airlines Inc., Frontier Airlines Inc., Mesa Airlines Inc., Hawaiian Airlines Inc., and SkyWest Airlines Inc.***
 
 3.  **Question 3 (10 points)** - Consider only flights that have non-missing arrival delay information.
     Your answer should include the name of the carrier in addition to the carrier code and the values asked.
