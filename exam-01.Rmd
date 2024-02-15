@@ -143,9 +143,32 @@ flights %>%
 
     a\.
     Which carrier had the highest mean arrival delay?
+```{r}   
+
+flights %>%
+  filter(!is.na(arr_delay)) %>%
+  group_by(carrier) %>%
+  summarise(
+    average_delay = mean(arr_delay)
+  ) %>%
+  arrange(desc(average_delay))
+```   
+***Frontier Airlines had the highest mean arrival delay.***
 
     b\.
     Which carrier had the lowest mean arrival delay?
+```{r}   
+
+flights %>%
+  filter(!is.na(arr_delay)) %>%
+  group_by(carrier) %>%
+  summarise(
+    average_delay = mean(arr_delay)
+  ) %>%
+  arrange((average_delay))
+
+```   
+***Alaska Airlines Inc. had the lowest mean arrival delay.***
 
 4.  **Question 4 (10 points)** - What was the mean temperature at the origin airport on the day with the highest departure delay?
     Your answer should include the name of origin airport, the date with the highest departure delay, and the mean temperature on that day.
