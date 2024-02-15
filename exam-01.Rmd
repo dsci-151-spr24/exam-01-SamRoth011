@@ -172,6 +172,22 @@ flights %>%
 
 4.  **Question 4 (10 points)** - What was the mean temperature at the origin airport on the day with the highest departure delay?
     Your answer should include the name of origin airport, the date with the highest departure delay, and the mean temperature on that day.
+    
+```{r}
+
+flights %>%
+  arrange(desc(dep_delay)) %>%
+  select(month, day, dep_delay, origin) %>%
+  slice(1)
+  
+weather %>%
+  filter(origin == "JFK", month == 1, day == 9) %>%
+  summarize(
+    average_temp = mean(temp)
+  )
+
+```
+***On the day with the highest departure delay, January 9th, the average temperature was 42.7 at John F Kennedy International Airport.***
 
 5.  **Question 5 (15 points)** - Consider breaking the day into four time intervals: 12:01am-6am, 6:01am-12pm, 12:01pm-6pm, 6:01pm-12am.
 
