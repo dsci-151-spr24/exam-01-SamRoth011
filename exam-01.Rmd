@@ -319,6 +319,25 @@ ggplot(contiguous_airports, aes(lon, lat)) +
     You will have to create `arrival` yourself, it is a categorical variable that is equal to `"ontime"` when `arr_delay <= 0` and `"delayed"` when `arr_delay > 0`.
 
 ![](img/plot-to-recreate.png)
+```{r}
+
+delayed_nyc_flights <- flights %>%
+  mutate(flights, arrival = if_else(arr_delay <= 0, "ontime", "delayed")) %>%
+  filter(dest %in% c("PHL", "RDU") & month == 12 & !is.na(arrival))
+
+ggplot(delayed_nyc_flights, aes(arrival, dep_delay, color = dest)) +
+  geom_boxplot() +
+  facet_grid(dest ~ origin) +
+  labs(
+    title = "On time performance of NYC flights",
+    subtitle = "December 2013",
+    x = "Arrival",
+    y = "Departure delay",
+    color = "Destination"
+  )
+
+```
+***This visualization could be used to see which airports are more likely to be on time.***
 
 **Extra Credit (5 pts)** - Create a visualization that effectively shows if there is a relationship between the average daily departure delay and the average daily temperature for all three New York city airports.
 Your answer must be given in a single pipe.
