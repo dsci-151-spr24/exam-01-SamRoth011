@@ -193,9 +193,71 @@ weather %>%
 
     a\.
     Calculate the proportion of flights that are delayed at departure at each of these time intervals.
+```{r early_morning}
 
+early_morning_flights <- flights %>%
+  filter(hour > 0 & hour <= 6) %>%
+  nrow()
+
+del_early_morning_flights <- flights %>%
+  filter(hour > 0 & hour <= 6, dep_delay > 0) %>%
+  nrow()
+
+early_morning_proportion <- del_early_morning_flights / early_morning_flights
+  
+print(early_morning_proportion)
+
+```
+```{r late_morning}
+
+late_morning_flights <- flights %>%
+  filter(hour > 6 & hour <= 12) %>%
+  nrow()
+
+del_late_morning_flights <- flights %>%
+  filter(hour > 6 & hour <= 12, dep_delay > 0) %>%
+  nrow()
+
+late_morning_proportion <- del_late_morning_flights / late_morning_flights
+  
+print(late_morning_proportion)
+
+```
+```{r early_afternoon}
+
+early_afternoon_flights <- flights %>%
+  filter(hour > 12 & hour <= 18) %>%
+  nrow()
+
+del_early_afternoon_flights <- flights %>%
+  filter(hour > 12 & hour <= 18, dep_delay > 0) %>%
+  nrow()
+
+early_afternoon_proportion <- del_early_afternoon_flights / early_afternoon_flights
+  
+print(early_afternoon_proportion)
+
+```
+```{r late_afternoon}
+
+late_afternoon_flights <- flights %>%
+  filter(hour > 18 & hour <= 24) %>%
+  nrow()
+
+del_late_afternoon_flights <- flights %>%
+  filter(hour > 18 & hour <= 24, dep_delay > 0) %>%
+  nrow()
+
+late_afternoon_proportion <- del_late_afternoon_flights / late_afternoon_flights
+  
+print(late_afternoon_proportion)
+
+```
+***For the early morning, the proportion of delayed flights was 0.212. For the late morning, the proportion was 0.276. For the early afternoon, it was 0.462. For the evening, it was 0.506.***
+    
     b\.
     Comment on how the likelihood of being delayed change throughout the day?
+***It seems that flights later in the day are more likely to be delayed than early flights.***
 
 6.  **Question 6 (15 points)** - Find the flight with the longest air time.
 
