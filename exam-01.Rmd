@@ -263,12 +263,28 @@ print(late_afternoon_proportion)
 
     a\.
     How long is this flight?
+```{r}
 
+flights %>%
+  arrange(desc(air_time)) %>%
+  slice(1) %>%
+  select(air_time, dest, tailnum)
+
+```
+***The flight flew for 695 minutes.***
     b\.
     What city did it fly to?
-
+***It flew to the city of Honululu.***
     c\.
     How many seats does the plane that flew this flight have?
+```{r}
+
+planes %>%
+  filter(tailnum == "N77066") %>%
+  select(seats)
+
+```
+***This plane has 292 seats.***
 
 7.  **Question 7 (15 pts)** - The `airports` data frame contains information on a large number of primarily American airports.
     These data include location information for these airports in the form of latitude and longitude coordinates.
