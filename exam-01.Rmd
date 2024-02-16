@@ -294,6 +294,24 @@ planes %>%
     *Hint:* You will first need to limit your analysis to the Contiguous United States.
     [This Wikipedia article](https://en.wikipedia.org/wiki/List_of_extreme_points_of_the_United_States) can help, but you're welcomed to use other resources as well.
     Make sure to cite whatever resource you use.
+    
+```{r}
+
+contiguous_airports <- airports %>%
+  filter(tzone %in% c("America/Chicago", "America/Denver", "America/New_York", "America/Phoenix"))
+
+ggplot(contiguous_airports, aes(lon, lat)) +
+  geom_point() +
+  labs(
+    title = "Airport Distribution",
+    x = "Longitude",
+    y = "Latitude"
+  )
+
+```
+
+***This visualization shows a greater density of airports on the East coast of the US. They are more spread out as you go further West.***
+***source:https://www.geeksforgeeks.org/filter-multiple-values-on-a-string-column-in-r-using-dplyr/***
 
 8.  **Question 8 (15 pts)** - Recreate the plot included below using the `flights` data.
     Once you have created the visualization, in no more than one paragraph, describe what you think the point of this visualization might be.
